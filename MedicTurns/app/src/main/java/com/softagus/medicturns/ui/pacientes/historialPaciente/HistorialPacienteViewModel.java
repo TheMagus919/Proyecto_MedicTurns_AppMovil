@@ -37,7 +37,8 @@ public class HistorialPacienteViewModel extends AndroidViewModel {
     }
 
     public void obtenerInformacionTurno(Bundle bundle) {
-        int dni = (int) bundle.get("dni");
+        String dn = bundle.get("dni").toString();
+        int dni = Integer.parseInt(dn);
         String token = ApiClientRetrofit.leerToken(context);
         ApiClientRetrofit.ApiMedicTurns ap = ApiClientRetrofit.getApiMedicTurns();
         Call<List<Turno>> llamada = ap.obtenerHistorialMedico(token, dni);
@@ -48,7 +49,7 @@ public class HistorialPacienteViewModel extends AndroidViewModel {
                     listaTurnos.postValue(response.body());
                 } else {
                     Log.d("salida", response.raw().message());
-                    Toast.makeText(context, "Error cargando informacion del turno", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "No hay Turnos asociados a esta persona.", Toast.LENGTH_SHORT).show();
                 }
             }
 

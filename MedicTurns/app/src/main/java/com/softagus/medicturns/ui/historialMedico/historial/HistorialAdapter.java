@@ -18,6 +18,9 @@ import com.softagus.medicturns.modelo.Turno;
 import com.softagus.medicturns.ui.agenda.AgendaAdapter;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.viewHolder>{
@@ -40,7 +43,13 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.view
 
     @Override
     public void onBindViewHolder(@NonNull HistorialAdapter.viewHolder holder, int position) {
-        holder.fecha.setText(listaTurnos.get(position).getFechaTurno().toString());
+        String fechaTurno = listaTurnos.get(position).getFechaTurno();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime fechaTurnoLocalDateTime = LocalDateTime.parse(fechaTurno, formatter);
+
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = fechaTurnoLocalDateTime.format(outputFormatter);
+        holder.fecha.setText(formattedDate);
         holder.paciente.setText(listaTurnos.get(position).getPaciente().getNombre()+" "+listaTurnos.get(position).getPaciente().getApellido());
         holder.estudio.setText(listaTurnos.get(position).getEstudio().getNombre());
         holder.dni.setText(listaTurnos.get(position).getPaciente().getDni());
@@ -61,7 +70,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.view
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             paciente=itemView.findViewById(R.id.txPacienteInfoTurno);
-            dni=itemView.findViewById(R.id.txDniPacienteTurnoInfo);
+            dni=itemView.findViewById(R.id.txDniPacienteTurno);
             estudio=itemView.findViewById(R.id.txEstudioInfoTurno);
             fecha=itemView.findViewById(R.id.txFechayInfoTurno);
             button= itemView.findViewById(R.id.btConsultaTurno);

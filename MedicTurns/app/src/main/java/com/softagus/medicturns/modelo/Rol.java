@@ -3,29 +3,29 @@ package com.softagus.medicturns.modelo;
 import java.io.Serializable;
 
 public class Rol implements Serializable {
-    private int idRol;
-    private String nombre;
+    private int IdRol;
+    private String Nombre;
 
     public Rol() {
     }
     public Rol(int idRol, String nombre) {
-        this.idRol = idRol;
-        this.nombre = nombre;
+        this.IdRol = idRol;
+        this.Nombre = nombre;
     }
 
     public int getIdRol() {
-        return idRol;
+        return IdRol;
     }
 
     public void setIdRol(int idRol) {
-        this.idRol = idRol;
+        this.IdRol = idRol;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.Nombre = nombre;
     }
 }

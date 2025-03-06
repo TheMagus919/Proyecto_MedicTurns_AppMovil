@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_historialMedico">
+    app:startDestination="@+id/nav_inicio">
 
     <fragment
         android:id="@+id/nav_historialMedico"
         android:name="com.softagus.medicturns.ui.historialMedico.HistorialMedicoFragment"
-        android:label="Historial Medico"
-        tools:layout="@layout/fragment_historialmedico" >
+        android:label="MedicTurns"
+        tools:layout="@layout/fragment_historialmedico">
         <action
             android:id="@+id/action_nav_historialMedico_to_historialFragment"
             app:destination="@id/historialFragment" />
@@ -18,18 +18,18 @@
     <fragment
         android:id="@+id/nav_agenda"
         android:name="com.softagus.medicturns.ui.agenda.AgendaFragment"
-        android:label="Agenda"
+        android:label="MedicTurns"
         tools:layout="@layout/fragment_agenda">
         <action
-        android:id="@+id/action_nav_agenda_to_detallesTurnoFragment"
-        app:destination="@id/detallesTurnoFragment" />
+            android:id="@+id/action_nav_agenda_to_detallesTurnoFragment"
+            app:destination="@id/detallesTurnoFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/detallesTurnoFragment"
         android:name="com.softagus.medicturns.ui.agenda.DetallesTurnoFragment"
-        android:label="fragment_detalles_turno"
-        tools:layout="@layout/fragment_detalles_turno" >>
+        android:label="MedicTurns"
+        tools:layout="@layout/fragment_detalles_turno">>
         <action
             android:id="@+id/action_detallesTurnoFragment_to_nav_agenda"
             app:destination="@id/nav_agenda" />
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/reporteFragment"
         android:name="com.softagus.medicturns.ui.agenda.reporte.ReporteFragment"
-        android:label="ReporteFragment"
+        android:label="MedicTurns"
         tools:layout="@layout/fragment_reporte">
         <action
             android:id="@+id/action_reporteFragment_to_detallesTurnoFragment"
@@ -49,8 +49,8 @@
     <fragment
         android:id="@+id/infoTurnoFragment"
         android:name="com.softagus.medicturns.ui.historialMedico.Informacion.InfoTurnoFragment"
-        android:label="fragment_infoturno"
-        tools:layout="@layout/fragment_infoturno" >
+        android:label="MedicTurns"
+        tools:layout="@layout/fragment_infoturno">
         <action
             android:id="@+id/action_infoTurnoFragment_to_historialFragment"
             app:destination="@id/historialFragment" />
@@ -58,8 +58,8 @@
     <fragment
         android:id="@+id/historialFragment"
         android:name="com.softagus.medicturns.ui.historialMedico.historial.HistorialFragment"
-        android:label="fragment_historial"
-        tools:layout="@layout/fragment_historial" >
+        android:label="MedicTurns"
+        tools:layout="@layout/fragment_historial">
         <action
             android:id="@+id/action_historialFragment_to_nav_historialMedico"
             app:destination="@id/nav_historialMedico" />
@@ -70,8 +70,8 @@
     <fragment
         android:id="@+id/historialPacienteFragment"
         android:name="com.softagus.medicturns.ui.pacientes.historialPaciente.HistorialPacienteFragment"
-        android:label="fragment_historial_paciente"
-        tools:layout="@layout/fragment_historial_paciente" >
+        android:label="MedicTurns"
+        tools:layout="@layout/fragment_historial_paciente">
         <action
             android:id="@+id/action_historialPacienteFragment_to_consultarPacienteFragment"
             app:destination="@id/consultarPacienteFragment" />
@@ -80,10 +80,10 @@
             app:destination="@id/informacionTurnoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/buscarPacienteFragment"
+        android:id="@+id/nav_pacientes"
         android:name="com.softagus.medicturns.ui.pacientes.buscar.BuscarPacienteFragment"
-        android:label="fragment_buscar_paciente"
-        tools:layout="@layout/fragment_buscar_paciente" >
+        android:label="MedicTurns"
+        tools:layout="@layout/fragment_buscar_paciente">
         <action
             android:id="@+id/action_buscarPacienteFragment_to_consultarPacienteFragment"
             app:destination="@id/consultarPacienteFragment" />
@@ -91,11 +91,11 @@
     <fragment
         android:id="@+id/consultarPacienteFragment"
         android:name="com.softagus.medicturns.ui.pacientes.consultar.ConsultarPacienteFragment"
-        android:label="fragment_info_paciente"
-        tools:layout="@layout/fragment_info_paciente" >
+        android:label="MedicTurns"
+        tools:layout="@layout/fragment_info_paciente">
         <action
             android:id="@+id/action_consultarPacienteFragment_to_buscarPacienteFragment"
-            app:destination="@id/buscarPacienteFragment" />
+            app:destination="@id/nav_pacientes" />
         <action
             android:id="@+id/action_consultarPacienteFragment_to_historialPacienteFragment"
             app:destination="@id/historialPacienteFragment" />
@@ -106,7 +106,7 @@
     <fragment
         android:id="@+id/informacionTurnoFragment"
         android:name="com.softagus.medicturns.ui.pacientes.historialPaciente.info.InformacionTurnoFragment"
-        android:label="InformacionTurnoFragment" >
+        android:label="MedicTurns">
         <action
             android:id="@+id/action_informacionTurnoFragment_to_historialPacienteFragment"
             app:destination="@id/historialPacienteFragment" />
@@ -114,16 +114,22 @@
     <fragment
         android:id="@+id/editarPacienteFragment"
         android:name="com.softagus.medicturns.ui.pacientes.editar.EditarPacienteFragment"
-        android:label="fragment_editar_paciente"
-        tools:layout="@layout/fragment_editar_paciente" >
+        android:label="MedicTurns"
+        tools:layout="@layout/fragment_editar_paciente">
         <action
             android:id="@+id/action_editarPacienteFragment_to_consultarPacienteFragment"
             app:destination="@id/consultarPacienteFragment" />
     </fragment>
     <fragment
-        android:id="@+id/agregarPacienteFragment"
+        android:id="@+id/nav_cargarPaciente"
         android:name="com.softagus.medicturns.ui.pacientes.cargar.AgregarPacienteFragment"
-        android:label="fragment_agregar_paciente"
+        android:label="MedicTurns"
         tools:layout="@layout/fragment_agregar_paciente" />
+    <fragment
+        android:id="@+id/nav_inicio"
+        android:name="com.softagus.medicturns.ui.inicio.InicioFragment"
+        android:label="MedicTurns"
+        tools:layout="@layout/fragment_inicio"
+        />
 
 </navigation>

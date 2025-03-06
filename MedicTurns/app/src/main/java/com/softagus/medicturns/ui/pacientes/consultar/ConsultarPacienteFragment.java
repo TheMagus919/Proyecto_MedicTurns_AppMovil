@@ -58,8 +58,8 @@ public class ConsultarPacienteFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         Bundle bundle = new Bundle();
-                        int idPaciente = paciente.getIdPaciente();
-                        bundle.putSerializable("idPaciente",(Serializable)idPaciente);
+                        String dni = paciente.getDni();
+                        bundle.putSerializable("dni",(Serializable)dni);
                         Navigation.findNavController(view).navigate(R.id.editarPacienteFragment, bundle);
                     }
                 });

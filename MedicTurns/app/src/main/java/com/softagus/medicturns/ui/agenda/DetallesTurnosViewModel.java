@@ -41,7 +41,8 @@ public class DetallesTurnosViewModel extends AndroidViewModel {
         llamada.enqueue(new Callback<Turno>() {
             @Override
             public void onResponse(Call<Turno> call, Response<Turno> response) {
-                Log.d("salida",response.body().isAsistio()+"");
+                Log.d("salida","Editado con exito");
+                Toast.makeText(context, "Editado con exito", Toast.LENGTH_SHORT).show();
             }
 
             @Override

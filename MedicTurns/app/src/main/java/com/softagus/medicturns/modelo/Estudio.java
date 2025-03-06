@@ -3,13 +3,13 @@ package com.softagus.medicturns.modelo;
 import java.io.Serializable;
 
 public class Estudio implements Serializable {
-    private int idEstudio;
-    private String nombre;
-    private String descripcion;
-    private double precio;
-    private String requisitos;
-    private int idRiesgo;
-    private int idEspecialidades;
+    private int IdEstudio;
+    private String Nombre;
+    private String Descripcion;
+    private double Precio;
+    private String Requisitos;
+    private int IdRiesgo;
+    private int IdEspecialidades;
 
     private Riesgo riesgo;
     private Especialidad especialidad;
@@ -17,69 +17,69 @@ public class Estudio implements Serializable {
     public Estudio() {
     }
     public Estudio(int idEstudio, String nombre, String descripcion, double precio, String requisitos, int idRiesgo, int idEspecialidades) {
-        this.idEstudio = idEstudio;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.requisitos = requisitos;
-        this.idRiesgo = idRiesgo;
-        this.idEspecialidades = idEspecialidades;
+        this.IdEstudio = idEstudio;
+        this.Nombre = nombre;
+        this.Descripcion = descripcion;
+        this.Precio = precio;
+        this.Requisitos = requisitos;
+        this.IdRiesgo = idRiesgo;
+        this.IdEspecialidades = idEspecialidades;
     }
 
     public int getIdEstudio() {
-        return idEstudio;
+        return IdEstudio;
     }
 
     public void setIdEstudio(int idEstudio) {
-        this.idEstudio = idEstudio;
+        this.IdEstudio = idEstudio;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.Nombre = nombre;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return Descripcion;
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        this.Descripcion = descripcion;
     }
 
     public double getPrecio() {
-        return precio;
+        return Precio;
     }
 
     public void setPrecio(double precio) {
-        this.precio = precio;
+        this.Precio = precio;
     }
 
     public String getRequisitos() {
-        return requisitos;
+        return Requisitos;
     }
 
     public void setRequisitos(String requisitos) {
-        this.requisitos = requisitos;
+        this.Requisitos = requisitos;
     }
 
     public int getIdRiesgo() {
-        return idRiesgo;
+        return IdRiesgo;
     }
 
     public void setIdRiesgo(int idRiesgo) {
-        this.idRiesgo = idRiesgo;
+        this.IdRiesgo = idRiesgo;
     }
 
     public int getIdEspecialidades() {
-        return idEspecialidades;
+        return IdEspecialidades;
     }
 
     public void setIdEspecialidades(int idEspecialidades) {
-        this.idEspecialidades = idEspecialidades;
+        this.IdEspecialidades = idEspecialidades;
     }
 
     public Riesgo getRiesgo() {

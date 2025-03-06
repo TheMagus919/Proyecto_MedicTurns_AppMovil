@@ -2,6 +2,7 @@ package com.softagus.medicturns.ui.historialMedico.historial;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +30,6 @@ public class HistorialFragment extends Fragment{
 
         public View onCreateView(@NonNull LayoutInflater inflater,
                                  ViewGroup container, Bundle savedInstanceState) {
-            HistorialViewModel historialViewModel =
-                    new ViewModelProvider(this).get(HistorialViewModel.class);
-
             hm = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(HistorialViewModel.class);
             binding = FragmentHistorialBinding.inflate(inflater, container, false);
             View root = binding.getRoot();
@@ -39,10 +37,20 @@ public class HistorialFragment extends Fragment{
             hm.getListaTurnos().observe(getViewLifecycleOwner(), new Observer<List<Turno>>() {
                 @Override
                 public void onChanged(List<Turno> turnos) {
-                    GridLayoutManager glm = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
-                    binding.rvHistorial.setLayoutManager(glm);
-                    HistorialAdapter ad=new HistorialAdapter(turnos,getContext(),getLayoutInflater());
-                    binding.rvHistorial.setAdapter(ad);
+                    if (turnos != null && !turnos.isEmpty()) {
+                        Log.d("salida", "Datos recibidos: " + turnos.size());
+                        GridLayoutManager glm = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
+                        binding.rvHistorial.setLayoutManager(glm);
+                        HistorialAdapter ad = new HistorialAdapter(turnos, getContext(), getLayoutInflater());
+                        if (turnos != null && !turnos.isEmpty()) {
+                            Log.d("salida", "Asignando turnos al Adapter: " + turnos.size());
+                            binding.rvHistorial.setAdapter(ad);
+                        } else {
+                            Log.d("salida", "La lista de turnos está vacía en el Adapter");
+                        }
+                    } else {
+                        Log.d("salida", "La lista de turnos está vacía o es nula");
+                    }
                 }
             });
             hm.obtenerInformacionTurno(bundle);

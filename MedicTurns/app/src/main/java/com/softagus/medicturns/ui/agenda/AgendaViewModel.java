@@ -43,17 +43,21 @@ public class AgendaViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<List<Turno>> call, Response<List<Turno>> response) {
                 if(response.isSuccessful()){
-                    listaTurnos.postValue(response.body());
+                    if (response.body() != null && !response.body().isEmpty()) {
+                        listaTurnos.postValue(response.body());
+                    } else {
+                        Log.d("salida", "La respuesta está vacía");
+                    }
                 }else{
                     Log.d("salida",response.message());
-                    Toast.makeText(context, "Error al obtener contratos vigentes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "No hay Turnos en la agenda de hoy.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Turno>> call, Throwable t) {
                 Log.d("salida",t.getMessage());
-                Toast.makeText(context, "Error al obtener contratos vigentes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error al obtener Agendaa", Toast.LENGTH_SHORT).show();
             }
         });
     }

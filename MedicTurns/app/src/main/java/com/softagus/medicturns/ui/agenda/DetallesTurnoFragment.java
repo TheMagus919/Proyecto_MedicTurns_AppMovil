@@ -19,6 +19,10 @@ import com.softagus.medicturns.modelo.Turno;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class DetallesTurnoFragment extends Fragment {
     private DetallesTurnosViewModel tm;
@@ -35,7 +39,13 @@ public class DetallesTurnoFragment extends Fragment {
         tm.getTurnoM().observe(getViewLifecycleOwner(), new Observer<Turno>() {
             @Override
             public void onChanged(Turno turno) {
-                binding.txFechaTurnoInfo.setText(turno.getFechaTurno().toString());
+                String fechaTurno = turno.getFechaTurno();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                LocalDateTime fechaTurnoLocalDateTime = LocalDateTime.parse(fechaTurno, formatter);
+
+                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+                String formattedDate = fechaTurnoLocalDateTime.format(outputFormatter);
+                binding.txFechaTurnoInfo.setText(formattedDate);
                 binding.txNombrePacienteTurnoInfo.setText(turno.getPaciente().getNombre()+" "+turno.getPaciente().getApellido());
                 binding.txDniPacienteTurnoInfo.setText(turno.getPaciente().getDni());
                 binding.txCuilPacienteTurnoInfo.setText(turno.getPaciente().getCuil());

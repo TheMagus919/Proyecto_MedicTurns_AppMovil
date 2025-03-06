@@ -21,16 +21,14 @@ public class BuscarPacienteFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HistorialMedicoViewModel historialMedicoViewModel =
-                new ViewModelProvider(this).get(HistorialMedicoViewModel.class);
 
         bm = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(BuscarPacienteViewModel.class);
         binding = FragmentBuscarPacienteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        int dni = Integer.parseInt(binding.edDniBuscar.getText().toString());
         binding.btBuscarPaciente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int dni = Integer.parseInt(binding.edDniBuscar.getText().toString());
                 bm.buscarPaciente(view, dni);
             }
         });

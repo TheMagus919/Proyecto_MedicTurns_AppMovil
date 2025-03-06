@@ -4,59 +4,59 @@ import java.io.Serializable;
 import java.sql.Time;
 
 public class Horario implements Serializable {
-    private int idHorario;
-    private int idDia;
-    private Time horaInicio;
-    private Time horaFin;
-    private int idUsuario;
+    private int IdHorario;
+    private int IdDia;
+    private Time HoraInicio;
+    private Time HoraFin;
+    private int IdUsuario;
 
     public Horario() {
     }
     public Horario(int idHorario, int idDia, Time horaInicio, Time horaFin, int idUsuario) {
-        this.idHorario = idHorario;
-        this.idDia = idDia;
-        this.horaInicio = horaInicio;
-        this.horaFin = horaFin;
-        this.idUsuario = idUsuario;
+        this.IdHorario = idHorario;
+        this.IdDia = idDia;
+        this.HoraInicio = horaInicio;
+        this.HoraFin = horaFin;
+        this.IdUsuario = idUsuario;
     }
 
     public int getIdHorario() {
-        return idHorario;
+        return IdHorario;
     }
 
     public void setIdHorario(int idHorario) {
-        this.idHorario = idHorario;
+        this.IdHorario = idHorario;
     }
 
     public int getIdDia() {
-        return idDia;
+        return IdDia;
     }
 
     public void setIdDia(int idDia) {
-        this.idDia = idDia;
+        this.IdDia = idDia;
     }
 
     public Time getHoraInicio() {
-        return horaInicio;
+        return HoraInicio;
     }
 
     public void setHoraInicio(Time horaInicio) {
-        this.horaInicio = horaInicio;
+        this.HoraInicio = horaInicio;
     }
 
     public Time getHoraFin() {
-        return horaFin;
+        return HoraFin;
     }
 
     public void setHoraFin(Time horaFin) {
-        this.horaFin = horaFin;
+        this.HoraFin = horaFin;
     }
 
     public int getIdUsuario() {
-        return idUsuario;
+        return IdUsuario;
     }
 
     public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+        this.IdUsuario = idUsuario;
     }
 }

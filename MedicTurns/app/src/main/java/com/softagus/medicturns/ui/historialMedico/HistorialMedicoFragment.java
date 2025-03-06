@@ -27,18 +27,14 @@ public class HistorialMedicoFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HistorialMedicoViewModel historialMedicoViewModel =
-                new ViewModelProvider(this).get(HistorialMedicoViewModel.class);
-
         hm = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(HistorialMedicoViewModel.class);
         binding = FragmentHistorialmedicoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        int dni = Integer.parseInt(binding.edDni.getText().toString());
         binding.btBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int dni = Integer.parseInt(binding.edDni.getText().toString());
                 hm.buscarHistorial(view, dni);
-                //hm.buscarHistorial(dni);
             }
         });
         return root;

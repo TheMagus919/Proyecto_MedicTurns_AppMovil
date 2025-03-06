@@ -14,9 +14,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.softagus.medicturns.Request.ApiClientRetrofit;
 import com.softagus.medicturns.modelo.Paciente;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConsultarPacienteViewModel extends AndroidViewModel {
 
@@ -36,10 +39,14 @@ public class ConsultarPacienteViewModel extends AndroidViewModel {
     }
 
     public void obtenerInformacionPaciente(Bundle bundle) {
-        int dni = (int) bundle.get("dni");
+        int Dnii = (int) bundle.get("dni");
         String token = ApiClientRetrofit.leerToken(context);
         ApiClientRetrofit.ApiMedicTurns ap = ApiClientRetrofit.getApiMedicTurns();
-        Call<Paciente> llamada = ap.obtenerInfoPaciente(token, dni);
+        Log.d("salida",Dnii+"");
+        String Dni = Dnii+"";
+        Log.d("salida",Dni);
+
+        Call<Paciente> llamada = ap.obtenerInfoPaciente(token, Dni);
         llamada.enqueue(new Callback<Paciente>() {
             @Override
             public void onResponse(Call<Paciente> call, Response<Paciente> response) {

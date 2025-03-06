@@ -5,13 +5,13 @@ import java.util.Date;
 
 public class Turno implements Serializable {
 
-    private int idTurno;
-    private int idUsuario;
-    private int idPaciente;
-    private int idEstudio;
-    private Date fechaTurno;
-    private Date fechaFin;
-    private boolean asistio;
+    private int IdTurno;
+    private int IdUsuario;
+    private int IdPaciente;
+    private int IdEstudio;
+    private String FechaTurno;
+    private String FechaFin;
+    private boolean Asistio;
     private String observaciones;
     private Estudio estudio;
     private Paciente paciente;
@@ -20,71 +20,85 @@ public class Turno implements Serializable {
     public Turno() {
     }
 
-    public Turno(int idTurno, int idUsuario, int idPaciente, int idEstudio, Date fechaTurno, Date fechaFin, boolean asistio, String observaciones) {
-        this.idTurno = idTurno;
-        this.idUsuario = idUsuario;
-        this.idPaciente = idPaciente;
-        this.idEstudio = idEstudio;
-        this.fechaTurno = fechaTurno;
-        this.fechaFin = fechaFin;
-        this.asistio = asistio;
+    public Turno(int idTurno, int idUsuario, int idPaciente, int idEstudio, String fechaTurno, String fechaFin, boolean asistio, String observaciones) {
+        this.IdTurno = idTurno;
+        this.IdUsuario = idUsuario;
+        this.IdPaciente = idPaciente;
+        this.IdEstudio = idEstudio;
+        this.FechaTurno = fechaTurno;
+        this.FechaFin = fechaFin;
+        this.Asistio = asistio;
         this.observaciones = observaciones;
     }
 
+    public Turno(int idTurno, int idUsuario, int idPaciente, int idEstudio, String fechaTurno, String fechaFin, boolean asistio, String observaciones, Estudio estudio, Paciente paciente, Usuario usuario) {
+        this.IdTurno = idTurno;
+        this.IdUsuario = idUsuario;
+        this.IdPaciente = idPaciente;
+        this.IdEstudio = idEstudio;
+        this.FechaTurno = fechaTurno;
+        this.FechaFin = fechaFin;
+        this.Asistio = asistio;
+        this.observaciones = observaciones;
+        this.estudio = estudio;
+        this.paciente = paciente;
+        this.usuario = usuario;
+    }
+
     public int getIdTurno() {
-        return idTurno;
+        return IdTurno;
     }
 
     public void setIdTurno(int idTurno) {
-        this.idTurno = idTurno;
+        this.IdTurno = idTurno;
     }
 
     public int getIdUsuario() {
-        return idUsuario;
+        return IdUsuario;
     }
 
     public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+        this.IdUsuario = idUsuario;
     }
 
     public int getIdPaciente() {
-        return idPaciente;
+        return IdPaciente;
     }
 
     public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+        this.IdPaciente = idPaciente;
     }
 
     public int getIdEstudio() {
-        return idEstudio;
+        return IdEstudio;
     }
 
     public void setIdEstudio(int idEstudio) {
-        this.idEstudio = idEstudio;
+        this.IdEstudio = idEstudio;
     }
 
-    public Date getFechaTurno() {
-        return fechaTurno;
+    public String getFechaTurno() {
+        return FechaTurno;
     }
 
-    public void setFechaTurno(Date fechaTurno) {
-        this.fechaTurno = fechaTurno;
+    public void setFechaTurno(String fechaTurno) {
+        this.FechaTurno = fechaTurno;
     }
 
-    public Date getFechaFin() {
-        return fechaFin;
+    public String getFechaFin() {
+        return FechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFechaFin(String fechaFin) {
+        this.FechaFin = fechaFin;
     }
 
     public boolean isAsistio() {
-        return asistio;
+        return Asistio;
     }
 
     public void setAsistio(boolean asistio) {
-        this.asistio = asistio;
+        this.Asistio = asistio;
     }
 
     public String getObservaciones() {

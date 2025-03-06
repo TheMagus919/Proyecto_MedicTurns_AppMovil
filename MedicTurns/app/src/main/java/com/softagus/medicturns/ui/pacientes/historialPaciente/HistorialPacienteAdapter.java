@@ -16,6 +16,8 @@ import com.softagus.medicturns.R;
 import com.softagus.medicturns.modelo.Turno;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class HistorialPacienteAdapter extends RecyclerView.Adapter<HistorialPacienteAdapter.viewHolder>{
@@ -38,7 +40,13 @@ public class HistorialPacienteAdapter extends RecyclerView.Adapter<HistorialPaci
 
     @Override
     public void onBindViewHolder(@NonNull HistorialPacienteAdapter.viewHolder holder, int position) {
-        holder.fecha.setText(listaTurnos.get(position).getFechaTurno().toString());
+        String fechaTurno = listaTurnos.get(position).getFechaTurno();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime fechaTurnoLocalDateTime = LocalDateTime.parse(fechaTurno, formatter);
+
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = fechaTurnoLocalDateTime.format(outputFormatter);
+        holder.fecha.setText(formattedDate);
         holder.paciente.setText(listaTurnos.get(position).getPaciente().getNombre()+" "+listaTurnos.get(position).getPaciente().getApellido());
         holder.estudio.setText(listaTurnos.get(position).getEstudio().getNombre());
         holder.dni.setText(listaTurnos.get(position).getPaciente().getDni());

@@ -95,7 +95,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.061"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logomedicina" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

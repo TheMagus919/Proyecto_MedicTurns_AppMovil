@@ -2,6 +2,7 @@ package com.softagus.medicturns.ui.agenda.reporte;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,14 +47,15 @@ public class ReporteFragment extends Fragment {
         rm.getTurno().observe(getViewLifecycleOwner(), new Observer<Turno>() {
             @Override
             public void onChanged(Turno turno) {
-                turno.setObservaciones(binding.edReporte.getText().toString());
+                binding.edReporte.setText(turno.getObservaciones());
                 turnoActual = turno;
             }
         });
         binding.btReporteEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rm.agregarReporte(turnoActual);
+                turnoActual.setObservaciones(binding.edReporte.getText().toString());
+                rm.agregarReporte(turnoActual,requireActivity());
             }
         });
         rm.armarLista(bundle);

@@ -47,6 +47,11 @@ public class HistorialViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<List<Turno>> call, Response<List<Turno>> response) {
                 if (response.isSuccessful()) {
+                    if (response.body() != null && !response.body().isEmpty()) {
+                        listaTurnos.postValue(response.body());
+                    } else {
+                        Log.d("salida", "La respuesta está vacía");
+                    }
                     listaTurnos.postValue(response.body());
                 } else {
                     Log.d("salida", response.raw().message());
@@ -56,8 +61,7 @@ public class HistorialViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<List<Turno>> call, Throwable t) {
-                Log.d("salida", t.getCause().toString());
-                Log.d("salida", t.getLocalizedMessage());
+                Log.d("salida", "Error: " + t.getMessage());
                 Toast.makeText(context, "Error cargando informacion.", Toast.LENGTH_SHORT).show();
             }
         });

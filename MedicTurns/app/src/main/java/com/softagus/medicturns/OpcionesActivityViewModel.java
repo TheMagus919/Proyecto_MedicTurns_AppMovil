@@ -34,6 +34,7 @@ public class OpcionesActivityViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if(response.isSuccessful()){
+                    Log.d("salida",response.message());
                     userM.postValue(response.body());
                 }else{
                     Log.d("salida",response.message());

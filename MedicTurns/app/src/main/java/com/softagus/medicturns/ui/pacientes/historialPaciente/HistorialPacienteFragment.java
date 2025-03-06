@@ -37,7 +37,7 @@ public class HistorialPacienteFragment extends Fragment {
         hm.getListaTurnos().observe(getViewLifecycleOwner(), new Observer<List<Turno>>() {
             @Override
             public void onChanged(List<Turno> turnos) {
-                GridLayoutManager glm = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
+                GridLayoutManager glm = new GridLayoutManager(getContext(),1,GridLayoutManager.VERTICAL,false);
                 binding.rvHistorialPaciente.setLayoutManager(glm);
                 HistorialPacienteAdapter ad=new HistorialPacienteAdapter(turnos,getContext(),getLayoutInflater());
                 binding.rvHistorialPaciente.setAdapter(ad);

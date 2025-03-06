@@ -3,132 +3,148 @@ package com.softagus.medicturns.modelo;
 import java.io.Serializable;
 
 public class Paciente implements Serializable {
-    private int idPaciente;
-    private String nombre;
-    private String apellido;
-    private String dni;
-    private String cuil;
-    private String email;
-    private String telefono;
-    private String obraSocial;
-    private String direccion;
-    private String grupoSanguineo;
-    private String alergias;
-    private int idRiesgo;
+    private int IdPaciente;
+    private String Nombre;
+    private String Apellido;
+    private String Dni;
+    private String Cuil;
+    private String Email;
+    private String Telefono;
+    private String ObraSocial;
+    private String Direccion;
+    private String GrupoSanguineo;
+    private String Alergias;
+    private int IdRiesgo;
     private Riesgo riesgo;
 
     public Paciente() {
     }
 
     public Paciente(int idPaciente, String nombre, String apellido, String dni, String cuil, String email, String telefono, String obraSocial, String direccion, String grupoSanguineo, String alergias, int idRiesgo) {
-        this.idPaciente = idPaciente;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.cuil = cuil;
-        this.email = email;
-        this.telefono = telefono;
-        this.obraSocial = obraSocial;
-        this.direccion = direccion;
-        this.grupoSanguineo = grupoSanguineo;
-        this.alergias = alergias;
-        this.idRiesgo = idRiesgo;
+        this.IdPaciente = idPaciente;
+        this.Nombre = nombre;
+        this.Apellido = apellido;
+        this.Dni = dni;
+        this.Cuil = cuil;
+        this.Email = email;
+        this.Telefono = telefono;
+        this.ObraSocial = obraSocial;
+        this.Direccion = direccion;
+        this.GrupoSanguineo = grupoSanguineo;
+        this.Alergias = alergias;
+        this.IdRiesgo = idRiesgo;
+    }
+
+    public Paciente(int idPaciente, String nombre, String apellido, String dni, String cuil, String email, String telefono, String obraSocial, String direccion, String grupoSanguineo, String alergias, int idRiesgo, Riesgo riesgo) {
+        this.IdPaciente = idPaciente;
+        this.Nombre = nombre;
+        this.Apellido = apellido;
+        this.Dni = dni;
+        this.Cuil = cuil;
+        this.Email = email;
+        this.Telefono = telefono;
+        this.ObraSocial = obraSocial;
+        this.Direccion = direccion;
+        this.GrupoSanguineo = grupoSanguineo;
+        this.Alergias = alergias;
+        this.IdRiesgo = idRiesgo;
+        this.riesgo = riesgo;
     }
 
     public int getIdPaciente() {
-        return idPaciente;
+        return IdPaciente;
     }
 
     public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+        this.IdPaciente = idPaciente;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.Nombre = nombre;
     }
 
     public String getApellido() {
-        return apellido;
+        return Apellido;
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.Apellido = apellido;
     }
 
     public String getDni() {
-        return dni;
+        return Dni;
     }
 
     public void setDni(String dni) {
-        this.dni = dni;
+        this.Dni = dni;
     }
 
     public String getCuil() {
-        return cuil;
+        return Cuil;
     }
 
     public void setCuil(String cuil) {
-        this.cuil = cuil;
+        this.Cuil = cuil;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
     public String getTelefono() {
-        return telefono;
+        return Telefono;
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        this.Telefono = telefono;
     }
 
     public String getObraSocial() {
-        return obraSocial;
+        return ObraSocial;
     }
 
     public void setObraSocial(String obraSocial) {
-        this.obraSocial = obraSocial;
+        this.ObraSocial = obraSocial;
     }
 
     public String getDireccion() {
-        return direccion;
+        return Direccion;
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        this.Direccion = direccion;
     }
 
     public String getGrupoSanguineo() {
-        return grupoSanguineo;
+        return GrupoSanguineo;
     }
 
     public void setGrupoSanguineo(String grupoSanguineo) {
-        this.grupoSanguineo = grupoSanguineo;
+        this.GrupoSanguineo = grupoSanguineo;
     }
 
     public String getAlergias() {
-        return alergias;
+        return Alergias;
     }
 
     public void setAlergias(String alergias) {
-        this.alergias = alergias;
+        this.Alergias = alergias;
     }
 
     public int getIdRiesgo() {
-        return idRiesgo;
+        return IdRiesgo;
     }
 
     public void setIdRiesgo(int idRiesgo) {
-        this.idRiesgo = idRiesgo;
+        this.IdRiesgo = idRiesgo;
     }
 
     public Riesgo getRiesgo() {

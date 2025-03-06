@@ -23,6 +23,7 @@ import retrofit2.Response;
 public class EditarPacienteViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<Paciente> paciente;
+    private MutableLiveData<Paciente> pacienteInfo;
     private MutableLiveData<String> error;
     public EditarPacienteViewModel(@NonNull Application application) {
         super(application);
@@ -43,61 +44,92 @@ public class EditarPacienteViewModel extends AndroidViewModel {
         return error;
     }
 
-    public void editarPaciente(Paciente paciente1, Bundle bundle){
-        String riesgo = (String)bundle.get("riesgo");
-        int idRiesgoP = 0;
-        if(riesgo.equals("Bajo")){
-            idRiesgoP = 1;
-        }else if(riesgo.equals("Medio")){
-            idRiesgoP = 2;
-        } else if (riesgo.equals("Alto")) {
-            idRiesgoP = 3;
+    public LiveData<Paciente> getInfoPaciente(){
+        if(pacienteInfo== null){
+            pacienteInfo= new MutableLiveData<>();
         }
-        if(paciente1.getDireccion().equals("") || paciente1.getDireccion().isEmpty()){
-            error.setValue("Ingrese un domicilio");
-        } else if (paciente1.getNombre().equals("") || paciente1.getNombre().isEmpty()) {
-            error.setValue("Ingrese el Nombre") ;
-        } else if (paciente1.getApellido().equals("") || paciente1.getApellido().isEmpty()) {
-            error.setValue("Ingrese el Apellido");
-        } else if (paciente1.getDni().equals("") || paciente1.getDni().isEmpty()) {
-            error.setValue("Ingrese el DNI");
-        } else if (paciente1.getCuil().equals("") || paciente1.getCuil().isEmpty()) {
-            error.setValue("Ingrese el Cuil");
-        } else if (paciente1.getEmail().equals("") || paciente1.getEmail().isEmpty()){
-            error.setValue("Ingrese el Email");
-        } else if (paciente1.getAlergias().equals("") || paciente1.getAlergias().isEmpty()){
-            error.setValue("Ingrese las Alergias");
-        }else if (paciente1.getGrupoSanguineo().equals("") || paciente1.getGrupoSanguineo().isEmpty()){
-            error.setValue("Seleccione el Grupo Sanguineo");
-        }else if (paciente1.getObraSocial().equals("") || paciente1.getObraSocial().isEmpty()){
-            error.setValue("Ingrese la Obra Social");
-        }else if (paciente1.getTelefono().equals("") || paciente1.getTelefono().isEmpty()){
-            error.setValue("Ingrese el Telefono");
-        }else if (idRiesgoP == 0){
-            error.setValue("Seleccione el Factor de Riesgo");
-        }else {
+        return pacienteInfo;
+    }
+
+    public void obtenerInfo(Bundle bundle){
+        int dni = Integer.parseInt((String) bundle.get("dni"));
+        String token = ApiClientRetrofit.leerToken(context);
+        ApiClientRetrofit.ApiMedicTurns ap = ApiClientRetrofit.getApiMedicTurns();
+        String Dni = dni+"";
+        Call<Paciente> llamada = ap.obtenerInfoPaciente(token, Dni);
+        llamada.enqueue(new Callback<Paciente>() {
+            @Override
+            public void onResponse(Call<Paciente> call, Response<Paciente> response) {
+                if (response.isSuccessful()) {
+                    pacienteInfo.postValue(response.body());
+                } else {
+                    Log.d("salida", response.raw().message());
+                    Toast.makeText(context, "Error cargando informacion del paciente", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Paciente> call, Throwable t) {
+                Log.d("salida", t.getCause().toString());
+                Log.d("salida", t.getLocalizedMessage());
+                Toast.makeText(context, "Error cargando informacion.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void editarPaciente(Paciente paciente1, Bundle bundle){
+        Paciente original = (Paciente)bundle.get("paciente");
+        if(!paciente1.getDireccion().equals("") || !paciente1.getDireccion().isEmpty()){
+            original.setDireccion(paciente1.getDireccion());
+        }
+        if (!paciente1.getNombre().equals("") || !paciente1.getNombre().isEmpty()) {
+            original.setNombre(paciente1.getNombre());
+        }
+        if (!paciente1.getApellido().equals("") || !paciente1.getApellido().isEmpty()) {
+            original.setApellido(paciente1.getApellido());
+        }
+        if (!paciente1.getDni().equals("") || !paciente1.getDni().isEmpty()) {
+            original.setDni(paciente1.getDni());
+        }
+        if (!paciente1.getCuil().equals("") || !paciente1.getCuil().isEmpty()) {
+            original.setCuil(paciente1.getCuil());
+        }
+        if (!paciente1.getEmail().equals("") || !paciente1.getEmail().isEmpty()) {
+            original.setEmail(paciente1.getEmail());
+        }
+        if (!paciente1.getAlergias().equals("") || !paciente1.getAlergias().isEmpty()){
+            original.setAlergias(paciente1.getAlergias());
+        }
+        if (!paciente1.getGrupoSanguineo().equals("") && !paciente1.getGrupoSanguineo().equals("Seleccione") && !paciente1.getGrupoSanguineo().isEmpty()){
+            original.setGrupoSanguineo(paciente1.getGrupoSanguineo());
+        }
+        if (!paciente1.getObraSocial().equals("") || !paciente1.getObraSocial().isEmpty()){
+            original.setObraSocial(paciente1.getObraSocial());
+        }
+        if (!paciente1.getTelefono().equals("") || !paciente1.getTelefono().isEmpty()){
+            original.setTelefono(paciente1.getTelefono());
+        }
             String token = ApiClientRetrofit.leerToken(context);
             ApiClientRetrofit.ApiMedicTurns ap= ApiClientRetrofit.getApiMedicTurns();
-            int id = paciente1.getIdPaciente();
-            RequestBody direccion = RequestBody.create(MediaType.parse("application/json"),paciente1.getDireccion());
-            RequestBody apellido = RequestBody.create(MediaType.parse("application/json"),paciente1.getApellido());
-            RequestBody dni = RequestBody.create(MediaType.parse("application/json"),paciente1.getEmail());
-            RequestBody email = RequestBody.create(MediaType.parse("application/json"),paciente1.getDni());
-            RequestBody cuil = RequestBody.create(MediaType.parse("application/json"),paciente1.getCuil());
-            RequestBody grupoSanguineo = RequestBody.create(MediaType.parse("application/json"),paciente1.getGrupoSanguineo());
-            RequestBody alergia = RequestBody.create(MediaType.parse("application/json"),paciente1.getAlergias());
-            RequestBody telefono = RequestBody.create(MediaType.parse("application/json"),paciente1.getTelefono());
-            RequestBody obraSocial = RequestBody.create(MediaType.parse("application/json"),paciente1.getObraSocial());
-            RequestBody nombre = RequestBody.create(MediaType.parse("application/json"),paciente1.getNombre());
-            RequestBody idRiesgo = RequestBody.create(MediaType.parse("application/json"),idRiesgoP+"");
-            Call<Paciente> llamada= ap.editarPaciente(id, token, nombre, apellido, dni, cuil, email, telefono, obraSocial, alergia, grupoSanguineo, direccion, idRiesgo);
+            int id = original.getIdPaciente();
+        String direccion = original.getDireccion();
+        String apellido = original.getApellido();
+        String dni = original.getDni();
+        String email = original.getEmail();
+        String cuil = original.getCuil();
+        String grupoSanguineo = original.getGrupoSanguineo();
+        String alergia = original.getAlergias();
+        String telefono = original.getTelefono();
+        String obraSocial = original.getObraSocial();
+        String nombre = original.getNombre();
+            int idRiesgo = original.getIdRiesgo();
+
+            Call<Paciente> llamada= ap.editarPaciente(token, id, nombre, apellido, email, dni, cuil, telefono, obraSocial, direccion, grupoSanguineo, alergia, idRiesgo);
             llamada.enqueue(new Callback<Paciente>() {
                 @Override
                 public void onResponse(Call<Paciente> call, Response<Paciente> response) {
                     if(response.isSuccessful()){
-                        Toast.makeText(context, response.message().toString(), Toast.LENGTH_SHORT).show();
-                        Log.d("salida","Inmueble: "+response.message());
                         paciente.postValue(response.body());
+
                     } else {
                         Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show();
                         Log.d("salida","error:"+response.toString());
@@ -111,6 +143,5 @@ public class EditarPacienteViewModel extends AndroidViewModel {
                     error.setValue("Verifique extencion de la foto: "+ t.getMessage());
                 }
             });
-        }
     }
 }

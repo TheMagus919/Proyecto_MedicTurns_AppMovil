@@ -5,14 +5,37 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_inicio"
+            android:icon="@drawable/agenda"
+            android:title="Inicio"
+            />
+
+        <item
             android:id="@+id/nav_agenda"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Agenda"/>
+            android:icon="@drawable/agenda"
+            android:title="Agenda"
+            android:visible="false"
+            />
 
         <item
             android:id="@+id/nav_historialMedico"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Historial Medico" />
+            android:icon="@drawable/historialmedico"
+            android:title="Historial Medico"
+            android:visible="false"/>
+
+        <item
+            android:id="@+id/nav_cargarPaciente"
+            android:icon="@drawable/agregarpersona"
+            android:title="Cargar Paciente"
+            android:visible="false"
+            />
+
+        <item
+            android:id="@+id/nav_pacientes"
+            android:icon="@drawable/buscar"
+            android:title="Buscar Pacientes"
+            android:visible="false"
+            />
 
         <item
             android:id="@+id/nav_salir"

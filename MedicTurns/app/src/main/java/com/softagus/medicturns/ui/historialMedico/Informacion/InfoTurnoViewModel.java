@@ -35,10 +35,11 @@ public class InfoTurnoViewModel extends AndroidViewModel {
     }
 
     public void obtenerInformacionTurno(Bundle bundle) {
-        Turno turno = (Turno) bundle.get("inmueble");
+        Turno turno = (Turno) bundle.get("turno");
         String token = ApiClientRetrofit.leerToken(context);
         ApiClientRetrofit.ApiMedicTurns ap = ApiClientRetrofit.getApiMedicTurns();
         int id = turno.getIdTurno();
+        Log.d("salida",turno.getIdTurno()+"");
         Call<Turno> llamada = ap.obtenerTurnoUsuario(token, id);
         llamada.enqueue(new Callback<Turno>() {
             @Override
